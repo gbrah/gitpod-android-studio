@@ -1,0 +1,71 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Build for different targets
+    init: |
+      if test ! -e "pubspec.yaml"; then {
+        rm -f /workspace/.template_init
+        flutter create --project-name gitpod_flutter_quickstart .
+      } fi
+      #flutter build -v linux
+      #flutter build -v web
+
+      ### If you want to build for android, consider uncommenting the below lines
+      flutter build -v bundle
+      flutter build -v appbundle
+      flutter build -v apk
+
+      ### This line is necessary for the below `- name: Run project` to await before proceeding to `flutter run` when prebuilds are not effective
+      # We could use `gp sync-[done|await] <id>` but that won't work between `init` and `command`
+      touch /workspace/.template_init
+
+  - name: Run project
+    command: |
+      printf "\033[3J\033c\033[3J" && if test ! -e /workspace/.template_init; then {
+        printf 'info[gitpod]: %s\n' "Waiting for the flutter build process to complete ..."
+        until test -e /workspace/.template_init; do
+          sleep 0.5
+        done
+      } fi
+      flutter emulator --launch myAVD
+      flutter run
+
+  - name: tailscaled
+    command: |
+      if [ -n "${TS_STATE_TAILSCALE_EXAMPLE}" ]; then
+        # restore the tailscale state from gitpod user's env vars
+        sudo mkdir -p /var/lib/tailscale
+        echo "${TS_STATE_TAILSCALE_EXAMPLE}" | sudo tee /var/lib/tailscale/tailscaled.state > /dev/null
+      fi
+      sudo tailscaled
+  - name: tailscale
+    command: |
+      if [ -n "${TS_STATE_TAILSCALE_EXAMPLE}" ]; then
+        sudo -E tailscale up
+      else
+        sudo -E tailscale up --hostname "gitpod-${GITPOD_GIT_USER_NAME// /-}-$(echo ${GITPOD_WORKSPACE_CONTEXT} | jq -r .repository.name)"
+        # store the tailscale state into gitpod user
+        gp env TS_STATE_TAILSCALE_EXAMPLE="$(sudo cat /var/lib/tailscale/tailscaled.state)"
+      fi
+     
+
+ports:
+  - port: 5900
+    onOpen: ignore
+    # vnc
+  - port: 6080
+    onOpen: open-preview
+    # flutter
+  - port: 8080
+    onOpen: ignore
+  - port: 5037
+    onOpen: ignore
+  - port: 9100-9101
+    onOpen: ignore
+  - port: 40000-50000
+    onOpen: ignore
+
+vscode:
+  extensions:
+    - dart-code.flutter
