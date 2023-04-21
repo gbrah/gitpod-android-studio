@@ -28,8 +28,8 @@ tasks:
           sleep 0.5
         done
       } fi
-      flutter emulator --launch myAVD
-      flutter run
+   # flutter emulator --launch myAVD
+   # flutter run
 
   - name: tailscaled
     command: |
