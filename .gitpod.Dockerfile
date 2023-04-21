@@ -45,6 +45,8 @@ RUN wget -q "https://storage.googleapis.com/flutter_infra_release/releases/stabl
     && yes | flutter doctor --android-licenses \
     && flutter doctor
 
-RUN sdkmanager "system-images;android-24;default;armeabi-v7a" 
-RUN sdkmanager --channel=3 emulator 
-RUN echo no | avdmanager create avd --force -n MyAVD -k "system-images;android-24;default;armeabi-v7a" 
+#RUN sdkmanager "system-images;android-24;default;armeabi-v7a" 
+#RUN sdkmanager --channel=3 emulator 
+#RUN echo no | avdmanager create avd --force -n MyAVD -k "system-images;android-24;default;armeabi-v7a" 
+
+RUN cd $HOME && wget https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2022.2.1.18/android-studio-2022.2.1.18-linux.tar.gz && tar zxvf android-studio-2022.2.1.18-linux.tar.gz 
