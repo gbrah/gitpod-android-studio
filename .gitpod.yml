@@ -12,6 +12,9 @@ tasks:
         echo "${TS_STATE_TAILSCALE_EXAMPLE}" | sudo tee /var/lib/tailscale/tailscaled.state > /dev/null
       fi
       sudo tailscaled
+   - name: androidstudio
+     command: |
+      $HOME/android-studio/bin/studio.sh
    - name: tailscale
      command: |
       if [ -n "${TS_STATE_TAILSCALE_EXAMPLE}" ]; then
@@ -21,9 +24,6 @@ tasks:
         # store the tailscale state into gitpod user
         gp env TS_STATE_TAILSCALE_EXAMPLE="$(sudo cat /var/lib/tailscale/tailscaled.state)"
       fi
-   - name: androidstudio
-     command: |
-      $HOME/android-studio/bin/studio.sh
 ports:
   - port: 5900
     onOpen: ignore
