@@ -21,7 +21,7 @@ tasks:
         # store the tailscale state into gitpod user
         gp env TS_STATE_TAILSCALE_EXAMPLE="$(sudo cat /var/lib/tailscale/tailscaled.state)"
       fi
-  - name: launch android studio
+  - name: androidstudio
     command: |
       $HOME/android-studio/bin/studio.sh
 
