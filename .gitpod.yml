@@ -23,7 +23,7 @@ tasks:
       fi
   - name: launch android studio
     command: |
-      $HOME/android-studio/bin/studio.sh &
+      $HOME/android-studio/bin/studio.sh
 
 ports:
   - port: 5900
