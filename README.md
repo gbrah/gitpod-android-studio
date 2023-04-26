@@ -1,4 +1,4 @@
-# flutter-gitpod-dev
+# gitpod-android-studio
 User gitpod as IDE for flutter development Android / Desktop.
 
 This repository contain the ressources of an article presenting gitpod as a mobile developer perspectives and guide you to create an android studio IDE on the cloud with gitpod from workspace configuration to device connection.
