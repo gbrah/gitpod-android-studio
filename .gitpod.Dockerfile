@@ -29,10 +29,9 @@ RUN cd $HOME && wget https://redirector.gvt1.com/edgedl/android/studio/ide-zips/
 
 # Install Android SDK
 RUN mkdir -p /home/gitpod/Android/Sdk  
-RUN _file_name="commandlinetools-linux-9477386_latest.zip" 
-RUN wget "https://dl.google.com/android/repository/$_file_name" 
-RUN unzip "$_file_name" -d $ANDROID_HOME 
-RUN rm -f "$_file_name" 
+RUN wget "https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip" 
+RUN unzip "commandlinetools-linux-9477386_latest.zip" -d $ANDROID_HOME 
+RUN rm -f "commandlinetools-linux-9477386_latest.zip" 
 RUN mkdir -p $ANDROID_HOME/cmdline-tools/latest 
 RUN mv $ANDROID_HOME/cmdline-tools/{bin,lib} $ANDROID_HOME/cmdline-tools/latest 
 RUN yes | sdkmanager "platform-tools" "build-tools;34.0.0" "platforms;android-33" 
