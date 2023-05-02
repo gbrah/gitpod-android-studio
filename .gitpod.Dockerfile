@@ -1,7 +1,7 @@
 FROM gitpod/workspace-full-vnc
 SHELL ["/bin/bash", "-c"]
-ENV ANDROID_HOME=$HOME/Android/Sdk \
-ENV PATH="$HOME/Android/Sdk/emulator:$HOME/Android/Sdk/tools:$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/platform-tools:$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
+ENV ANDROID_HOME=$HOME/Android/Sdk
+ENV PATH="$HOME/Android/Sdk/emulator:$HOME/Android/Sdk/tools:$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
 
 # Install Open JDK for android and other dependencies
 USER root
