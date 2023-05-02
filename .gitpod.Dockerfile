@@ -1,7 +1,7 @@
 FROM gitpod/workspace-full-vnc
 SHELL ["/bin/bash", "-c"]
 ENV ANDROID_HOME=$HOME/Android/Sdk
-ENV PATH="$HOME/Android/Sdk/emulator:$HOME/Android/Sdk/tools:$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+ENV PATH="$HOME/Android/Sdk/emulator:$HOME/Android/Sdk/tools:$HOME/Android/Sdk/cmdline-tools/latest/bin:$HOME/Android/Sdk/platform-tools:$PATH"
 
 # Install Open JDK for android and other dependencies
 USER root
@@ -28,7 +28,7 @@ USER gitpod
 RUN cd $HOME && wget https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2022.2.1.18/android-studio-2022.2.1.18-linux.tar.gz && tar zxvf android-studio-2022.2.1.18-linux.tar.gz  && rm -r android-studio-2022.2.1.18-linux.tar.gz 
 
 # Install Android SDK
-RUN mkdir /home/gitpod/Android && mkdir /home/gitpod/Android/Sdk \ 
+RUN mkdir -p /home/gitpod/Android/Sdk \ 
     && _file_name="commandlinetools-linux-9477386_latest.zip" \ 
     && wget "https://dl.google.com/android/repository/$_file_name" \
     && unzip "$_file_name" -d $ANDROID_HOME \
