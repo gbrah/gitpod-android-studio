@@ -34,5 +34,5 @@ RUN unzip "commandlinetools-linux-9477386_latest.zip" -d $ANDROID_HOME
 RUN rm -f "commandlinetools-linux-9477386_latest.zip" 
 RUN mkdir -p $ANDROID_HOME/cmdline-tools/latest 
 RUN mv $ANDROID_HOME/cmdline-tools/{bin,lib} $ANDROID_HOME/cmdline-tools/latest 
-RUN yes | sdkmanager --licenses
-RUN yes | sdkmanager "platform-tools" "build-tools;33.0.2" "platforms;android-33" 
+#RUN yes | sdkmanager --licenses
+#RUN yes | sdkmanager "platform-tools" "build-tools;33.0.2" "platforms;android-33" 
