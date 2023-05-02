@@ -28,11 +28,11 @@ USER gitpod
 RUN cd $HOME && wget https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2022.2.1.18/android-studio-2022.2.1.18-linux.tar.gz && tar zxvf android-studio-2022.2.1.18-linux.tar.gz  && rm -r android-studio-2022.2.1.18-linux.tar.gz 
 
 # Install Android SDK
-RUN mkdir -p /home/gitpod/Android/Sdk \ 
-    && _file_name="commandlinetools-linux-9477386_latest.zip" \ 
-    && wget "https://dl.google.com/android/repository/$_file_name" \
-    && unzip "$_file_name" -d $ANDROID_HOME \
-    && rm -f "$_file_name" \
-    && mkdir -p $ANDROID_HOME/cmdline-tools/latest \
-    && mv $ANDROID_HOME/cmdline-tools/{bin,lib} $ANDROID_HOME/cmdline-tools/latest \
-    && yes | sdkmanager "platform-tools" "build-tools;34.0.0" "platforms;android-33" \
+RUN mkdir -p /home/gitpod/Android/Sdk  
+RUN _file_name="commandlinetools-linux-9477386_latest.zip" 
+RUN wget "https://dl.google.com/android/repository/$_file_name" 
+RUN unzip "$_file_name" -d $ANDROID_HOME 
+RUN rm -f "$_file_name" 
+RUN mkdir -p $ANDROID_HOME/cmdline-tools/latest 
+RUN mv $ANDROID_HOME/cmdline-tools/{bin,lib} $ANDROID_HOME/cmdline-tools/latest 
+RUN yes | sdkmanager "platform-tools" "build-tools;34.0.0" "platforms;android-33" 
